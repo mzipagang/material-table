@@ -16,11 +16,11 @@ import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 import DateFnsUtils from "@date-io/date-fns";
 import {
-  MuiPickersUtilsProvider,
+  LocalizationProvider,
   TimePicker,
   DatePicker,
   DateTimePicker,
-} from "@material-ui/pickers";
+} from "@mui/lab";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -173,12 +173,12 @@ class MTableFilterRow extends React.Component {
       dateInputElement = <TimePicker {...pickerProps} />;
     }
     return (
-      <MuiPickersUtilsProvider
+      <LocalizationProvider
         utils={DateFnsUtils}
         locale={this.props.localization.dateTimePickerLocalization}
       >
         {dateInputElement}
-      </MuiPickersUtilsProvider>
+      </LocalizationProvider>
     );
   };
 
