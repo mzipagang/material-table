@@ -27,7 +27,7 @@ const App = () => {
             {
               firstName: "Mark",
               lastName: "Zipagang",
-              position: "Being cool"
+              position: "Being awesome i mean"
             },
           ]}
         />

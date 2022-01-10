@@ -1,9 +1,13 @@
 export const elementSize = (props) =>
-  props.options.padding === "default" ? "medium" : "small";
+  props.options.padding === 'normal' ? 'medium' : 'small';
 export const baseIconSize = (props) =>
-  elementSize(props) === "medium" ? 48 : 32;
+  elementSize(props) === 'medium' ? 48 : 32;
 export const rowActions = (props) =>
-  props.actions.filter((a) => a.position === "row" || typeof a === "function");
+  props.actions
+    ? props.actions.filter(
+        (a) => a.position === 'row' || typeof a === 'function'
+      )
+    : [];
 export const actionsColumnWidth = (props) =>
   rowActions(props).length * baseIconSize(props);
 export const selectionMaxWidth = (props, maxTreeLevel) =>
@@ -16,4 +20,10 @@ export const reducePercentsInCalc = (calc, fullValue) => {
     return calc.replace(/\d*%/, `${fullValue * (percentage / 100)}px`);
   }
   return calc.replace(/\d*%/, `${fullValue}px`);
+};
+
+export const widthToNumber = (width) => {
+  if (typeof width === 'number') return width;
+  if (!width || !width.match(/^\s*\d+(px)?\s*$/)) return NaN;
+  return Number(width.replace(/px$/, ''));
 };
