@@ -50,6 +50,7 @@ export default class MTableGroupRow extends React.Component {
             cellEditable={this.props.cellEditable}
             onCellEditStarted={this.props.onCellEditStarted}
             onCellEditFinished={this.props.onCellEditFinished}
+            scrollWidth={this.props.scrollWidth}
           />
         ));
       } else {
@@ -72,6 +73,7 @@ export default class MTableGroupRow extends React.Component {
                 onEditingApproved={this.props.onEditingApproved}
                 getFieldValue={this.props.getFieldValue}
                 onBulkEditRowChanged={this.props.onBulkEditRowChanged}
+                scrollWidth={this.props.scrollWidth}
               />
             );
           } else {
@@ -98,6 +100,7 @@ export default class MTableGroupRow extends React.Component {
                 cellEditable={this.props.cellEditable}
                 onCellEditStarted={this.props.onCellEditStarted}
                 onCellEditFinished={this.props.onCellEditFinished}
+                scrollWidth={this.props.scrollWidth}
               />
             );
           }
@@ -191,6 +194,7 @@ MTableGroupRow.propTypes = {
   onEditingApproved: PropTypes.func,
   options: PropTypes.object,
   path: PropTypes.arrayOf(PropTypes.number),
+  scrollWidth: PropTypes.number.isRequired,
   cellEditable: PropTypes.object,
   onCellEditStarted: PropTypes.func,
   onCellEditFinished: PropTypes.func,

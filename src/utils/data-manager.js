@@ -1,20 +1,25 @@
 import formatDate from "date-fns/format";
+import { v4 as uuidv4 } from 'uuid';
+import { selectFromObject } from './';
+import { widthToNumber } from './common-values';
 import { byString } from "./";
 
 export default class DataManager {
+  checkForId = false;
   applyFilters = false;
   applySearch = false;
   applySort = false;
   currentPage = 0;
-  detailPanelType = "multiple";
+  detailPanelType = 'multiple';
   lastDetailPanelRow = undefined;
   lastEditingRow = undefined;
   orderBy = -1;
-  orderDirection = "";
+  orderDirection = 'desc';
   pageSize = 5;
   paging = true;
   parentFunc = null;
-  searchText = "";
+  searchText = '';
+  searchDebounceDelay = 500;
   selectedCount = 0;
   treefiedDataLength = 0;
   treeDataMaxLevel = 0;
@@ -41,27 +46,72 @@ export default class DataManager {
   sorted = false;
   paged = false;
 
-  rootGroupsIndex = {};
+  tableWidth = 'full';
+  tableStyleWidth = '100%';
 
-  constructor() {}
+  rootGroupsIndex = {};
 
   setData(data) {
     this.selectedCount = 0;
-
+    let prevDataObject = {};
+    if (this.data.length !== 0 && this.data[0].id !== undefined) {
+      prevDataObject = this.data.reduce((obj, row) => {
+        obj[row.tableData.id] = row.tableData;
+        return obj;
+      }, {});
+    }
+    if (process.env.NODE_ENV === 'development' && !this.checkForId) {
+      this.checkForId = true;
+      if (data.some((d) => d.id === undefined)) {
+        console.warn(
+          'The table requires all rows to have an unique id property. A row was provided without id in the rows prop. To prevent the loss of state between renders, please provide an unique id for each row.'
+        );
+      }
+    }
     this.data = data.map((row, index) => {
-      row.tableData = { ...row.tableData, id: index };
-      if (row.tableData.checked) {
+      const prevTableData = prevDataObject[row.id] || {};
+      const tableData = {
+        id: row.id || index,
+        // `uuid` acts as our 'key' and is generated when new data
+        // is passed into material-table externally.
+        uuid: row.uuid || uuidv4(),
+        ...prevTableData,
+        ...row.tableData
+      };
+      if (tableData.checked) {
         this.selectedCount++;
       }
-      return row;
+      const newRow = {
+        ...row,
+        tableData
+      };
+      if (
+        this.lastDetailPanelRow &&
+        this.lastDetailPanelRow.tableData === prevTableData
+      ) {
+        this.lastDetailPanelRow = newRow;
+      }
+      if (
+        this.lastEditingRow &&
+        this.lastEditingRow.tableData === prevTableData
+      ) {
+        this.lastEditingRow = newRow;
+      }
+      return newRow;
     });
 
     this.filtered = false;
   }
 
+  setTableWidth(tableWidth) {
+    this.tableWidth = tableWidth;
+  }
+
   setColumns(columns) {
-    const undefinedWidthColumns = columns.filter(
-      (c) => c.width === undefined && !c.hidden
+    const undefinedWidthColumns = columns.filter((c) =>
+      c.width === undefined && c.columnDef
+        ? c.columnDef.tableData.width === undefined
+        : true && !c.hidden
     );
     let usedWidth = ["0px"];
 
@@ -71,17 +121,21 @@ export default class DataManager {
         filterValue: columnDef.defaultFilter,
         groupOrder: columnDef.defaultGroupOrder,
         groupSort: columnDef.defaultGroupSort || "asc",
-        width: columnDef.width,
+        width:
+          typeof columnDef.width === "number"
+            ? columnDef.width + "px"
+            : columnDef.width,
+        initialWidth:
+          typeof columnDef.width === "number"
+            ? columnDef.width + "px"
+            : columnDef.width,
+        additionalWidth: 0,
         ...columnDef.tableData,
         id: index,
       };
 
-      if (columnDef.width !== undefined) {
-        if (typeof columnDef.width === "number") {
-          usedWidth.push(columnDef.width + "px");
-        } else {
-          usedWidth.push(columnDef.width);
-        }
+      if (columnDef.tableData.width !== undefined) {
+        usedWidth.push(columnDef.tableData.width);
       }
 
       return columnDef;
@@ -89,7 +143,7 @@ export default class DataManager {
 
     usedWidth = "(" + usedWidth.join(" + ") + ")";
     undefinedWidthColumns.forEach((columnDef) => {
-      columnDef.tableData.width = `calc((100% - ${usedWidth}) / ${undefinedWidthColumns.length})`;
+      columnDef.tableData.width = columnDef.tableData.initialWidth = `calc((100% - ${usedWidth}) / ${undefinedWidthColumns.length})`;
     });
   }
 
@@ -191,6 +245,10 @@ export default class DataManager {
     this.currentPage = 0;
   }
 
+  changeSearchDebounce(searchDebounceDelay) {
+    this.searchDebounceDelay = searchDebounceDelay;
+  }
+
   changeRowEditing(rowData, mode) {
     if (rowData) {
       rowData.tableData.editing = mode;
@@ -214,16 +272,24 @@ export default class DataManager {
     this.bulkEditOpen = bulkEditOpen;
   }
 
-  changeAllSelected(checked) {
+  changeAllSelected(checked, selectionProps) {
     let selectedCount = 0;
-    if (this.isDataType("group")) {
+    const isChecked = (row) => {
+      const selectionResult = selectionProps
+        ? selectionProps(row)
+        : { disabled: false };
+      return row.tableData.disabled || selectionResult.disabled
+        ? false
+        : checked;
+    };
+    if (this.isDataType('group')) {
       const setCheck = (data) => {
         data.forEach((element) => {
           if (element.groups.length > 0) {
             setCheck(element.groups);
           } else {
             element.data.forEach((d) => {
-              d.tableData.checked = d.tableData.disabled ? false : checked;
+              d.tableData.checked = isChecked(d);
               selectedCount++;
             });
           }
@@ -232,15 +298,41 @@ export default class DataManager {
 
       setCheck(this.groupedData);
     } else {
-      this.searchedData.map((row) => {
-        row.tableData.checked = row.tableData.disabled ? false : checked;
-        return row;
+      this.searchedData.forEach((row) => {
+        row.tableData.checked = isChecked(row);
       });
       selectedCount = this.searchedData.length;
     }
 
     this.selectedCount = checked ? selectedCount : 0;
   }
+
+  changeGroupSelected = (checked, path) => {
+    let currentGroup;
+    let currentGroupArray = this.groupedData;
+
+    path.forEach((value) => {
+      currentGroup = currentGroupArray.find((group) => group.value == value);
+      currentGroupArray = currentGroup.groups;
+    });
+
+    const setCheck = (data) => {
+      data.forEach((element) => {
+        if (element.groups.length > 0) {
+          setCheck(element.groups);
+        } else {
+          element.data.forEach((d) => {
+            if (d.tableData.checked != checked) {
+              d.tableData.checked = d.tableData.disabled ? false : checked;
+              this.selectedCount = this.selectedCount + (checked ? 1 : -1);
+            }
+          });
+        }
+      });
+    };
+
+    setCheck([currentGroup]);
+  };
 
   changeOrder(orderBy, orderDirection) {
     this.orderBy = orderBy;
@@ -270,6 +362,7 @@ export default class DataManager {
   changeTreeExpand(path) {
     const rowData = this.findDataByPath(this.sortedData, path);
     rowData.tableData.isTreeExpanded = !rowData.tableData.isTreeExpanded;
+    this.setColumns(this.columns);
   }
 
   changeDetailPanelType(type) {
@@ -286,8 +379,8 @@ export default class DataManager {
       );
 
     if (
-      result.destination.droppableId === "groups" &&
-      result.source.droppableId === "groups"
+      result.destination.droppableId === 'groups' &&
+      result.source.droppableId === 'groups'
     ) {
       start = Math.min(result.destination.index, result.source.index);
       const end = Math.max(result.destination.index, result.source.index);
@@ -304,8 +397,8 @@ export default class DataManager {
         groups.push(last);
       }
     } else if (
-      result.destination.droppableId === "groups" &&
-      result.source.droppableId === "headers"
+      result.destination.droppableId === 'groups' &&
+      result.source.droppableId === 'headers'
     ) {
       const newGroup = this.columns.find(
         (c) => c.tableData.id == result.draggableId
@@ -317,8 +410,8 @@ export default class DataManager {
 
       groups.splice(result.destination.index, 0, newGroup);
     } else if (
-      result.destination.droppableId === "headers" &&
-      result.source.droppableId === "groups"
+      result.destination.droppableId === 'headers' &&
+      result.source.droppableId === 'groups'
     ) {
       const removeGroup = this.columns.find(
         (c) => c.tableData.id == result.draggableId
@@ -326,8 +419,8 @@ export default class DataManager {
       removeGroup.tableData.groupOrder = undefined;
       groups.splice(result.source.index, 1);
     } else if (
-      result.destination.droppableId === "headers" &&
-      result.source.droppableId === "headers"
+      result.destination.droppableId === 'headers' &&
+      result.source.droppableId === 'headers'
     ) {
       start = Math.min(result.destination.index, result.source.index);
       const end = Math.max(result.destination.index, result.source.index);
@@ -417,6 +510,60 @@ export default class DataManager {
       newData,
     };
   };
+
+  onColumnResized(
+    id,
+    offset,
+    changedColumnWidthsBeforeOffset,
+    initialColWidths
+  ) {
+    const column = this.columns.find((c) => c.tableData.id === id);
+    if (!column) {
+      return [];
+    }
+    const nextColumn = this.columns.find((c) => c.tableData.id === id + 1);
+    if (this.tableWidth === 'full' && !nextColumn) {
+      return [];
+    }
+    if (offset === 0) {
+      // We've finished the column resize
+      return this.tableWidth === 'full' ? [column, nextColumn] : [column];
+    }
+    if (this.tableWidth === 'variable' && this.tableStyleWidth === '100%') {
+      // First time we're resizing - resolve all the column widths
+      // MTableHeader has ref to
+      this.columns.forEach((col, index) => ({
+        ...col,
+        tableData: {
+          ...col.tableData,
+          width: `${initialColWidths[index]}px`,
+          widthPx: initialColWidths[index]
+        }
+      }));
+      this.tableStyleWidth = initialColWidths.reduce(
+        (acc, width) => acc + width
+      );
+    }
+
+    const changed = [column];
+    column.tableData.widthPx = changedColumnWidthsBeforeOffset[0] + offset;
+    column.tableData.additionalWidth += offset;
+    column.tableData.width =
+      this.tableWidth === 'full'
+        ? `calc(${column.tableData.initialWidth} + ${column.tableData.additionalWidth}px)`
+        : `${column.tableData.widthPx}px`;
+    if (this.tableWidth === 'full') {
+      nextColumn.tableData.widthPx =
+        changedColumnWidthsBeforeOffset[1] - offset;
+      nextColumn.tableData.additionalWidth -= offset;
+      nextColumn.tableData.width = `calc(${nextColumn.tableData.initialWidth} + ${nextColumn.tableData.additionalWidth}px)`;
+      changed.push(nextColumn);
+    }
+    if (this.tableWidth === 'variable') {
+      this.tableStyleWidth += offset;
+    }
+    return changed;
+  }
 
   expandTreeForNodes = (data) => {
     data.forEach((row) => {
@@ -717,6 +864,7 @@ export default class DataManager {
     this.searchedData = [...this.filteredData];
 
     if (this.searchText && this.applySearch) {
+      const trimmedSearchText = this.searchText.trim();
       this.searchedData = this.searchedData.filter((row) => {
         return this.columns
           .filter((columnDef) => {
@@ -727,7 +875,7 @@ export default class DataManager {
           .some((columnDef) => {
             if (columnDef.customFilterAndSearch) {
               return !!columnDef.customFilterAndSearch(
-                this.searchText,
+                trimmedSearchText,
                 row,
                 columnDef
               );
@@ -737,7 +885,7 @@ export default class DataManager {
                 return value
                   .toString()
                   .toUpperCase()
-                  .includes(this.searchText.toUpperCase());
+                  .includes(trimmedSearchText.toUpperCase());
               }
             }
           });

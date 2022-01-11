@@ -3,6 +3,8 @@ import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import PropTypes from "prop-types";
 import parseISO from "date-fns/parseISO";
+import * as CommonValues from "../utils/common-values";
+
 /* eslint-enable no-unused-vars */
 
 /* eslint-disable no-useless-escape */
@@ -116,9 +118,16 @@ export default class MTableCell extends React.Component {
   };
 
   getStyle = () => {
+    const width = CommonValues.reducePercentsInCalc(
+      this.props.columnDef.tableData.width,
+      this.props.scrollWidth
+    );
+
     let cellStyle = {
       color: "inherit",
-      width: this.props.columnDef.tableData.width,
+      width,
+      maxWidth: this.props.columnDef.maxWidth,
+      minWidth: this.props.columnDef.minWidth,
       boxSizing: "border-box",
       fontSize: "inherit",
       fontFamily: "inherit",
@@ -149,6 +158,7 @@ export default class MTableCell extends React.Component {
       errorState,
       cellEditable,
       onCellEditStarted,
+      scrollWidth,
       ...cellProps
     } = this.props;
     const cellAlignment =
