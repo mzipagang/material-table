@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 import PropTypes from "prop-types";
 import * as React from "react";
 /* eslint-enable no-unused-vars */
@@ -89,8 +89,8 @@ class MTableBody extends React.Component {
             localization={{
               ...MTableBody.defaultProps.localization.editRow,
               ...this.props.localization.editRow,
-              dateTimePickerLocalization: this.props.localization
-                .dateTimePickerLocalization,
+              dateTimePickerLocalization:
+                this.props.localization.dateTimePickerLocalization,
             }}
             key={"row-" + data.tableData.id}
             mode={this.props.bulkEditOpen ? "bulk" : data.tableData.editing}
@@ -209,8 +209,8 @@ class MTableBody extends React.Component {
             localization={{
               ...MTableBody.defaultProps.localization.filterRow,
               ...this.props.localization.filterRow,
-              dateTimePickerLocalization: this.props.localization
-                .dateTimePickerLocalization,
+              dateTimePickerLocalization:
+                this.props.localization.dateTimePickerLocalization,
             }}
             hasDetailPanel={!!this.props.detailPanel}
             isTreeData={this.props.isTreeData}
