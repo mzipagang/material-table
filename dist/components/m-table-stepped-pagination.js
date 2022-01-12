@@ -155,21 +155,21 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
       (0, _assertThisInitialized2.default)(_this),
       "handleFirstPageButtonClick",
       function (event) {
-        _this.props.onChangePage(event, 0);
+        _this.props.onPageChange(event, 0);
       }
     );
     (0, _defineProperty2.default)(
       (0, _assertThisInitialized2.default)(_this),
       "handleBackButtonClick",
       function (event) {
-        _this.props.onChangePage(event, _this.props.page - 1);
+        _this.props.onPageChange(event, _this.props.page - 1);
       }
     );
     (0, _defineProperty2.default)(
       (0, _assertThisInitialized2.default)(_this),
       "handleNextButtonClick",
       function (event) {
-        _this.props.onChangePage(event, _this.props.page + 1);
+        _this.props.onPageChange(event, _this.props.page + 1);
       }
     );
     (0, _defineProperty2.default)(
@@ -177,7 +177,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
       "handleNumberButtonClick",
       function (number) {
         return function (event) {
-          _this.props.onChangePage(event, number);
+          _this.props.onPageChange(event, number);
         };
       }
     );
@@ -185,7 +185,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
       (0, _assertThisInitialized2.default)(_this),
       "handleLastPageButtonClick",
       function (event) {
-        _this.props.onChangePage(
+        _this.props.onPageChange(
           event,
           Math.max(
             0,
@@ -382,7 +382,7 @@ var actionsStyles = function actionsStyles(theme) {
 };
 
 MTablePaginationInner.propTypes = {
-  onChangePage: _propTypes.default.func,
+  onPageChange: _propTypes.default.func,
   page: _propTypes.default.number,
   count: _propTypes.default.number,
   rowsPerPage: _propTypes.default.number,
