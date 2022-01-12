@@ -61,7 +61,7 @@ var _FormControlLabel = _interopRequireDefault(
 
 var _dateFns = _interopRequireDefault(require("@date-io/date-fns"));
 
-var _pickers = require("@material-ui/pickers");
+var _pickers = require("@mui/lab");
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 

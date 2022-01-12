@@ -81,7 +81,7 @@ var _Tooltip = _interopRequireDefault(require("@mui/material/Tooltip"));
 
 var _dateFns = _interopRequireDefault(require("@date-io/date-fns"));
 
-var _pickers = require("@material-ui/pickers");
+var _pickers = require("@mui/lab");
 
 function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== "function") return null;
