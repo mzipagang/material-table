@@ -83,6 +83,9 @@ class MTableBody extends React.Component {
               return !columnDef.hidden;
             })}
             components={this.props.components}
+            classes={{
+              root: this.props.classes.root
+            }}
             data={data}
             errorState={this.props.errorState}
             icons={this.props.icons}
@@ -107,6 +110,9 @@ class MTableBody extends React.Component {
         return (
           <this.props.components.Row
             components={this.props.components}
+            classes={{
+              root: this.props.classes.root
+            }}
             icons={this.props.icons}
             data={data}
             index={index}
@@ -197,6 +203,9 @@ class MTableBody extends React.Component {
             columns={this.props.columns.filter(
               (columnDef) => !columnDef.hidden
             )}
+            classes={{
+              root: this.props.classes.root
+            }}
             icons={this.props.icons}
             hasActions={
               this.props.actions.filter(

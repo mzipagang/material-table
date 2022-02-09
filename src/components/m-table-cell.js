@@ -178,6 +178,7 @@ export default class MTableCell extends React.Component {
 
     return (
       <TableCell
+        className={this.props.classes.root}
         size={this.props.size}
         {...cellProps}
         style={this.getStyle()}

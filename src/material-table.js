@@ -744,7 +744,7 @@ export default class MaterialTable extends React.Component {
             <TableRow>
               <props.components.Pagination
                 classes={{
-                  root: props.classes.paginationRoot,
+                  root: props.classes.tablePagination,
                   toolbar: props.classes.paginationToolbar,
                   caption: props.classes.paginationCaption,
                   selectRoot: props.classes.paginationSelectRoot,
@@ -863,6 +863,9 @@ export default class MaterialTable extends React.Component {
       <props.components.Body
         actions={props.actions}
         components={props.components}
+        classes={{
+          root: props.classes.outlinedInput
+        }}
         icons={props.icons}
         renderData={this.state.renderData}
         currentPage={this.state.currentPage}

@@ -126,6 +126,7 @@ class MTableFilterRow extends React.Component {
     const FilterIcon = this.props.icons.Filter;
     return (
       <TextField
+        className={this.props.classes.root}
         style={columnDef.type === "numeric" ? { float: "right" } : {}}
         type={columnDef.type === "numeric" ? "number" : "search"}
         value={columnDef.tableData.filterValue || ""}
