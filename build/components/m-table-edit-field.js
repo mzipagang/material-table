@@ -39,6 +39,10 @@ var _getPrototypeOf2 = _interopRequireDefault(
 
 var React = _interopRequireWildcard(require("react"));
 
+var _AdapterDateFns = _interopRequireDefault(
+  require("@mui/lab/AdapterDateFns")
+);
+
 var _TextField = _interopRequireDefault(require("@mui/material/TextField"));
 
 var _Checkbox = _interopRequireDefault(require("@mui/material/Checkbox"));
@@ -59,9 +63,7 @@ var _FormControlLabel = _interopRequireDefault(
   require("@mui/material/FormControlLabel")
 );
 
-var _dateFns = _interopRequireDefault(require("@date-io/date-fns"));
-
-var _pickers = require("@mui/lab");
+var _lab = require("@mui/lab");
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
@@ -279,18 +281,23 @@ var MTableEditField = /*#__PURE__*/ (function (_React$Component) {
       key: "renderDateField",
       value: function renderDateField() {
         return /*#__PURE__*/ React.createElement(
-          _pickers.MuiPickersUtilsProvider,
+          _lab.LocalizationProvider,
           {
-            utils: _dateFns.default,
-            locale: this.props.locale,
+            dateAdapter: _AdapterDateFns.default,
           },
           /*#__PURE__*/ React.createElement(
-            _pickers.DatePicker,
+            _lab.DatePicker,
             (0, _extends2.default)({}, this.getProps(), {
               format: "dd.MM.yyyy",
               value: this.props.value || null,
               onChange: this.props.onChange,
               clearable: true,
+              renderInput: function renderInput(props) {
+                return /*#__PURE__*/ React.createElement(
+                  _TextField.default,
+                  props
+                );
+              },
               InputProps: {
                 style: {
                   fontSize: 13,
@@ -311,18 +318,23 @@ var MTableEditField = /*#__PURE__*/ (function (_React$Component) {
       key: "renderTimeField",
       value: function renderTimeField() {
         return /*#__PURE__*/ React.createElement(
-          _pickers.MuiPickersUtilsProvider,
+          _lab.LocalizationProvider,
           {
-            utils: _dateFns.default,
-            locale: this.props.locale,
+            dateAdapter: _AdapterDateFns.default,
           },
           /*#__PURE__*/ React.createElement(
-            _pickers.TimePicker,
+            _lab.TimePicker,
             (0, _extends2.default)({}, this.getProps(), {
               format: "HH:mm:ss",
               value: this.props.value || null,
               onChange: this.props.onChange,
               clearable: true,
+              renderInput: function renderInput(props) {
+                return /*#__PURE__*/ React.createElement(
+                  _TextField.default,
+                  props
+                );
+              },
               InputProps: {
                 style: {
                   fontSize: 13,
@@ -343,18 +355,23 @@ var MTableEditField = /*#__PURE__*/ (function (_React$Component) {
       key: "renderDateTimeField",
       value: function renderDateTimeField() {
         return /*#__PURE__*/ React.createElement(
-          _pickers.MuiPickersUtilsProvider,
+          _lab.LocalizationProvider,
           {
-            utils: _dateFns.default,
-            locale: this.props.locale,
+            dateAdapter: _AdapterDateFns.default,
           },
           /*#__PURE__*/ React.createElement(
-            _pickers.DateTimePicker,
+            _lab.DateTimePicker,
             (0, _extends2.default)({}, this.getProps(), {
               format: "dd.MM.yyyy HH:mm:ss",
               value: this.props.value || null,
               onChange: this.props.onChange,
               clearable: true,
+              renderInput: function renderInput(props) {
+                return /*#__PURE__*/ React.createElement(
+                  _TextField.default,
+                  props
+                );
+              },
               InputProps: {
                 style: {
                   fontSize: 13,

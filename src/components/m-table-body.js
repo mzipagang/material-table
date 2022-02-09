@@ -79,13 +79,13 @@ class MTableBody extends React.Component {
       if (data.tableData.editing || this.props.bulkEditOpen) {
         return (
           <this.props.components.EditRow
+            classes={{
+              root: this.props.classes.root,
+            }}
             columns={this.props.columns.filter((columnDef) => {
               return !columnDef.hidden;
             })}
             components={this.props.components}
-            classes={{
-              root: this.props.classes.root
-            }}
             data={data}
             errorState={this.props.errorState}
             icons={this.props.icons}
@@ -109,10 +109,10 @@ class MTableBody extends React.Component {
       } else {
         return (
           <this.props.components.Row
-            components={this.props.components}
             classes={{
-              root: this.props.classes.root
+              root: this.props.classes.root,
             }}
+            components={this.props.components}
             icons={this.props.icons}
             data={data}
             index={index}
@@ -200,12 +200,12 @@ class MTableBody extends React.Component {
       <TableBody>
         {this.props.options.filtering && (
           <this.props.components.FilterRow
+            classes={{
+              root: this.props.classes.root,
+            }}
             columns={this.props.columns.filter(
               (columnDef) => !columnDef.hidden
             )}
-            classes={{
-              root: this.props.classes.root
-            }}
             icons={this.props.icons}
             hasActions={
               this.props.actions.filter(
@@ -301,6 +301,7 @@ MTableBody.defaultProps = {
 
 MTableBody.propTypes = {
   actions: PropTypes.array,
+  classes: PropTypes.object,
   components: PropTypes.object.isRequired,
   columns: PropTypes.array.isRequired,
   currentPage: PropTypes.number,

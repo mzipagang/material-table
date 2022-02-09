@@ -31,7 +31,7 @@ export default class MTableBodyRow extends React.Component {
           return (
             <this.props.components.EditCell
               classes={{
-                root: this.props.classes.root 
+                root: this.props.classes.root,
               }}
               components={this.props.components}
               icons={this.props.icons}
@@ -47,7 +47,7 @@ export default class MTableBodyRow extends React.Component {
           return (
             <this.props.components.Cell
               classes={{
-                root: this.props.classes.root 
+                root: this.props.classes.root,
               }}
               size={size}
               errorState={this.props.errorState}
@@ -314,7 +314,13 @@ export default class MTableBodyRow extends React.Component {
         </TableCell>
       );
     } else {
-      return <TableCell className={this.props.classes.root} padding="none" key={"key-tree-data-column"} />;
+      return (
+        <TableCell
+          className={this.props.classes.root}
+          padding="none"
+          key={"key-tree-data-column"}
+        />
+      );
     }
   }
 

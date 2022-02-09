@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 import PropTypes from "prop-types";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import TextField from "@mui/material/TextField";
@@ -12,9 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
 import InputAdornment from "@mui/material/InputAdornment";
-import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
-import DateFnsUtils from "@date-io/date-fns";
 import {
   LocalizationProvider,
   TimePicker,
@@ -163,6 +162,7 @@ class MTableFilterRow extends React.Component {
       onChange: onDateInputChange,
       placeholder: this.getLocalizedFilterPlaceHolder(columnDef),
       clearable: true,
+      renderInput: (props) => <TextField {...props} />,
     };
 
     let dateInputElement = null;
@@ -174,10 +174,7 @@ class MTableFilterRow extends React.Component {
       dateInputElement = <TimePicker {...pickerProps} />;
     }
     return (
-      <LocalizationProvider
-        utils={DateFnsUtils}
-        locale={this.props.localization.dateTimePickerLocalization}
-      >
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
         {dateInputElement}
       </LocalizationProvider>
     );
