@@ -79,9 +79,7 @@ class MTableBody extends React.Component {
       if (data.tableData.editing || this.props.bulkEditOpen) {
         return (
           <this.props.components.EditRow
-            classes={{
-              root: this.props.classes.root,
-            }}
+            classes={this.props.classes}
             columns={this.props.columns.filter((columnDef) => {
               return !columnDef.hidden;
             })}
@@ -109,9 +107,7 @@ class MTableBody extends React.Component {
       } else {
         return (
           <this.props.components.Row
-            classes={{
-              root: this.props.classes.root,
-            }}
+            classes={this.props.classes}
             components={this.props.components}
             icons={this.props.icons}
             data={data}
@@ -200,9 +196,7 @@ class MTableBody extends React.Component {
       <TableBody>
         {this.props.options.filtering && (
           <this.props.components.FilterRow
-            classes={{
-              root: this.props.classes.root,
-            }}
+            classes={this.props.classes}
             columns={this.props.columns.filter(
               (columnDef) => !columnDef.hidden
             )}

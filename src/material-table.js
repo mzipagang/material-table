@@ -862,9 +862,7 @@ export default class MaterialTable extends React.Component {
       )}
       <props.components.Body
         actions={props.actions}
-        classes={{
-          root: props.classes.outlinedInput,
-        }}
+        classes={props.classes}
         components={props.components}
         icons={props.icons}
         renderData={this.state.renderData}
