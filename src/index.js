@@ -12,15 +12,7 @@ export { MaterialTable as MTable };
 
 const styles = (theme) => ({
   paginationRoot: {
-    "& .MuiTablePagination-selectLabel": {
-      display: "none",
-    },
-    "& .MuiTablePagination-displayedRows": {
-      display: "none",
-    },
-    "& .MuiTablePagination-select": {
-      margin: "0px",
-    },
+    width: "100%",
   },
   paginationToolbar: {
     padding: 0,

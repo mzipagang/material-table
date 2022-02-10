@@ -742,7 +742,7 @@ export default class MaterialTable extends React.Component {
       return (
         <Table>
           <TableFooter style={{ display: "grid" }}>
-            <TableRow>
+            <Footer>
               <props.components.Pagination
                 classes={{
                   root: props.classes.paginationRoot,
@@ -800,7 +800,7 @@ export default class MaterialTable extends React.Component {
                 }
                 labelRowsPerPage={localization.labelRowsPerPage}
               />
-            </TableRow>
+            </Footer>
           </TableFooter>
         </Table>
       );
@@ -1178,6 +1178,24 @@ var style = () => ({
       backgroundColor: "rgba(0, 0, 0, .3)",
     },
   },
+});
+
+const paginationStyle = () => ({
+  root: {
+    "& .MuiTablePagination-selectLabel": {
+      display: "none",
+    },
+    "& .MuiTablePagination-displayedRows": {
+      display: "none",
+    },
+    "& .MuiTablePagination-select": {
+      margin: "0px",
+    },
+  },
+});
+
+const Footer = withStyles(paginationStyle)(({ children, classes }) => {
+  return <TableRow className={classes.root}>{children}</TableRow>;
 });
 
 const ScrollBar = withStyles(style)(({ double, children, classes }) => {

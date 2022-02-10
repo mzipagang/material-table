@@ -51,15 +51,7 @@ _materialTable.default.propTypes = _propTypes.propTypes;
 var styles = function styles(theme) {
   return {
     paginationRoot: {
-      "& .MuiTablePagination-selectLabel": {
-        display: "none",
-      },
-      "& .MuiTablePagination-displayedRows": {
-        display: "none",
-      },
-      "& .MuiTablePagination-select": {
-        margin: "0px",
-      },
+      width: "100%",
     },
     paginationToolbar: {
       padding: 0,

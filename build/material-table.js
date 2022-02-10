@@ -1348,7 +1348,7 @@ var MaterialTable = /*#__PURE__*/ (function (_React$Component) {
                 },
               },
               /*#__PURE__*/ React.createElement(
-                _TableRow.default,
+                Footer,
                 null,
                 /*#__PURE__*/ React.createElement(props.components.Pagination, {
                   classes: {
@@ -1718,10 +1718,37 @@ var style = function style() {
   };
 };
 
-var ScrollBar = (0, _withStyles.default)(style)(function (_ref) {
-  var double = _ref.double,
-    children = _ref.children,
+var paginationStyle = function paginationStyle() {
+  return {
+    root: {
+      "& .MuiTablePagination-selectLabel": {
+        display: "none",
+      },
+      "& .MuiTablePagination-displayedRows": {
+        display: "none",
+      },
+      "& .MuiTablePagination-select": {
+        margin: "0px",
+      },
+    },
+  };
+};
+
+var Footer = (0, _withStyles.default)(paginationStyle)(function (_ref) {
+  var children = _ref.children,
     classes = _ref.classes;
+  return /*#__PURE__*/ React.createElement(
+    _TableRow.default,
+    {
+      className: classes.root,
+    },
+    children
+  );
+});
+var ScrollBar = (0, _withStyles.default)(style)(function (_ref2) {
+  var double = _ref2.double,
+    children = _ref2.children,
+    classes = _ref2.classes;
 
   if (double) {
     return /*#__PURE__*/ React.createElement(
