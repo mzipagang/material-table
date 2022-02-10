@@ -37,6 +37,8 @@ var _getPrototypeOf2 = _interopRequireDefault(
   require("@babel/runtime/helpers/getPrototypeOf")
 );
 
+var _withStyles = _interopRequireDefault(require("@mui/styles/withStyles"));
+
 var _TableBody = _interopRequireDefault(require("@mui/material/TableBody"));
 
 var _TableCell = _interopRequireDefault(require("@mui/material/TableCell"));
@@ -524,5 +526,56 @@ MTableBody.propTypes = {
   bulkEditOpen: _propTypes.default.bool,
   onBulkEditRowChanged: _propTypes.default.func,
 };
-var _default = MTableBody;
+
+var styles = function styles() {
+  return {
+    tableBodyRoot: {
+      "& tr:nth-of-type(even)": {
+        background: "#fafafa",
+      },
+      "& tr:hover": {
+        background: "#D3E2F8",
+      },
+    },
+    tableCellHead: {
+      "&. MuiTableCell-head": {
+        lineHeight: ".9rem",
+        backgroundClip: "padding-box",
+      },
+    },
+    outlinedInput: {
+      "& .MuiOutlinedInput-root": {
+        height: "26px",
+        minWidth: "30px",
+        padding: 0,
+      },
+      "& .MuiOutlinedInput-notchedOutline": {
+        border: "none",
+        borderBottom: "1px solid rgba(0, 0, 0, 0.42)",
+        borderRadius: 0,
+      },
+      "& input": {
+        padding: "4px 0 5px",
+        minWidth: "50px",
+      },
+      "& .MuiIcon-root": {
+        fontSize: "0.75rem !important",
+      },
+    },
+    tablePagination: {
+      "& .MuiTablePagination-selectLabel": {
+        display: "none",
+      },
+      "& .MuiTablePagination-displayedRows": {
+        display: "none",
+      },
+      "& .MuiTablePagination-select": {
+        margin: "0px",
+      },
+    },
+  };
+};
+
+var _default = (0, _withStyles.default)(styles)(MTableBody);
+
 exports.default = _default;

@@ -50,6 +50,7 @@ export default class MaterialTable extends React.Component {
       showAddRow: false,
       bulkEditOpen: false,
       width: 0,
+      classes: {},
     };
 
     this.tableContainerDiv = React.createRef();
@@ -744,7 +745,7 @@ export default class MaterialTable extends React.Component {
             <TableRow>
               <props.components.Pagination
                 classes={{
-                  root: props.classes.tablePagination,
+                  root: props.classes.paginationRoot,
                   toolbar: props.classes.paginationToolbar,
                   caption: props.classes.paginationCaption,
                   selectRoot: props.classes.paginationSelectRoot,
@@ -862,7 +863,6 @@ export default class MaterialTable extends React.Component {
       )}
       <props.components.Body
         actions={props.actions}
-        classes={props.classes}
         components={props.components}
         icons={props.icons}
         renderData={this.state.renderData}

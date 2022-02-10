@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import withStyles from "@mui/styles/withStyles";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -333,4 +334,51 @@ MTableBody.propTypes = {
   onBulkEditRowChanged: PropTypes.func,
 };
 
-export default MTableBody;
+const styles = () => ({
+  tableBodyRoot: {
+    "& tr:nth-of-type(even)": {
+      background: "#fafafa",
+    },
+    "& tr:hover": {
+      background: "#D3E2F8",
+    },
+  },
+  tableCellHead: {
+    "&. MuiTableCell-head": {
+      lineHeight: ".9rem",
+      backgroundClip: "padding-box",
+    },
+  },
+  outlinedInput: {
+    "& .MuiOutlinedInput-root": {
+      height: "26px",
+      minWidth: "30px",
+      padding: 0,
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "none",
+      borderBottom: "1px solid rgba(0, 0, 0, 0.42)",
+      borderRadius: 0,
+    },
+    "& input": {
+      padding: "4px 0 5px",
+      minWidth: "50px",
+    },
+    "& .MuiIcon-root": {
+      fontSize: "0.75rem !important",
+    },
+  },
+  tablePagination: {
+    "& .MuiTablePagination-selectLabel": {
+      display: "none",
+    },
+    "& .MuiTablePagination-displayedRows": {
+      display: "none",
+    },
+    "& .MuiTablePagination-select": {
+      margin: "0px",
+    },
+  },
+});
+
+export default withStyles(styles)(MTableBody);
