@@ -69,6 +69,7 @@ var MTableHeader = /*#__PURE__*/function (_React$Component) {
     value: function renderHeader() {
       var _this = this;
 
+      console.log(this.props);
       var size = this.props.options.padding === "default" ? "medium" : "small";
       var mapArr = this.props.columns.filter(function (columnDef) {
         return !columnDef.hidden && !(columnDef.tableData.groupOrder > -1);
@@ -271,11 +272,23 @@ MTableHeader.propTypes = {
 var styles = function styles(theme) {
   return {
     header: {
+      backgroundClip: 'padding-box',
+      backgroundColor: theme.palette.background.paper,
+      // Change according to theme,
+      lineHeight: '.9rem',
       position: "sticky",
       top: 0,
       zIndex: 10,
-      backgroundColor: theme.palette.background.paper // Change according to theme,
-
+      '&.MuiTableCell-sizeSmall': {
+        paddingTop: 4,
+        paddingBottom: 4
+      },
+      '&.MuiTableSortLabel-root': {
+        fontSize: '14px'
+      },
+      '&.MuiTableSortLabel-icon': {
+        fontSize: '14px !important'
+      }
     }
   };
 };

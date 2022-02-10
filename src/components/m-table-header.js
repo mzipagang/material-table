@@ -14,6 +14,7 @@ import * as CommonValues from "../utils/common-values";
 
 export class MTableHeader extends React.Component {
   renderHeader() {
+    console.log(this.props)
     const size = this.props.options.padding === "default" ? "medium" : "small";
 
     const mapArr = this.props.columns
@@ -284,10 +285,22 @@ MTableHeader.propTypes = {
 
 export const styles = (theme) => ({
   header: {
+    backgroundClip: 'padding-box',
+    backgroundColor: theme.palette.background.paper, // Change according to theme,
+    lineHeight: '.9rem',
     position: "sticky",
     top: 0,
     zIndex: 10,
-    backgroundColor: theme.palette.background.paper, // Change according to theme,
+    '&.MuiTableCell-sizeSmall': {
+      paddingTop: 4,
+      paddingBottom: 4
+    },
+    '&.MuiTableSortLabel-root': {
+      fontSize: '14px'
+    },
+    '&.MuiTableSortLabel-icon': {
+      fontSize: '14px !important'
+    }
   },
 });
 

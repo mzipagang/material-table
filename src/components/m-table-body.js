@@ -282,6 +282,7 @@ class MTableBody extends React.Component {
 
 MTableBody.defaultProps = {
   actions: [],
+  classes: {},
   currentPage: 0,
   pageSize: 5,
   renderData: [],
