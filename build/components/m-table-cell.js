@@ -219,7 +219,7 @@ var MTableCell = /*#__PURE__*/function (_React$Component) {
       }
 
       return /*#__PURE__*/React.createElement(_TableCell.default, (0, _extends2.default)({
-        className: this.props.classes.outlinedInput,
+        className: this.props.classes?.outlinedInput,
         size: this.props.size
       }, cellProps, {
         style: this.getStyle(),

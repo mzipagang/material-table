@@ -126,7 +126,7 @@ class MTableFilterRow extends React.Component {
     console.log(this.props)
     return (
       <TextField
-        className={this.props.classes.outlinedInput}
+        className={this.props.classes?.outlinedInput}
         style={columnDef.type === "numeric" ? { float: "right" } : {}}
         type={columnDef.type === "numeric" ? "number" : "search"}
         value={columnDef.tableData.filterValue || ""}

@@ -101,7 +101,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
         })) {
           return /*#__PURE__*/React.createElement(_this2.props.components.EditCell, {
             classes: {
-              root: _this2.props.classes.outlinedInput
+              root: _this2.props.classes?.outlinedInput
             },
             components: _this2.props.components,
             icons: _this2.props.icons,
@@ -115,7 +115,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
         } else {
           return /*#__PURE__*/React.createElement(_this2.props.components.Cell, {
             classes: {
-              root: _this2.props.classes.outlinedInput
+              root: _this2.props.classes?.outlinedInput
             },
             size: size,
             errorState: _this2.props.errorState,
@@ -140,7 +140,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
       var actions = CommonValues.rowActions(this.props);
       var width = actions.length * CommonValues.baseIconSize(this.props);
       return /*#__PURE__*/React.createElement(_TableCell.default, {
-        className: this.props.classes.outlinedInput,
+        className: this.props.classes?.outlinedInput,
         size: size,
         padding: "none",
         key: "key-actions-column",
@@ -181,7 +181,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
         marginLeft: 5 + this.props.level * 9
       };
       return /*#__PURE__*/React.createElement(_TableCell.default, {
-        className: this.props.classes.outlinedInput,
+        className: this.props.classes?.outlinedInput,
         size: size,
         padding: "none",
         key: "key-selection-column",
@@ -216,7 +216,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
 
       if (typeof this.props.detailPanel == "function") {
         return /*#__PURE__*/React.createElement(_TableCell.default, {
-          className: this.props.classes.outlinedInput,
+          className: this.props.classes?.outlinedInput,
           size: size,
           padding: "none",
           key: "key-detail-panel-column",
@@ -237,7 +237,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/React.createElement(this.props.icons.DetailPanel, null)));
       } else {
         return /*#__PURE__*/React.createElement(_TableCell.default, {
-          className: this.props.classes.outlinedInput,
+          className: this.props.classes?.outlinedInput,
           size: size,
           padding: "none",
           key: "key-detail-panel-column"
@@ -311,7 +311,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
 
       if (this.props.data.tableData.childRows && this.props.data.tableData.childRows.length > 0) {
         return /*#__PURE__*/React.createElement(_TableCell.default, {
-          className: this.props.classes.outlinedInput,
+          className: this.props.classes?.outlinedInput,
           size: size,
           padding: "none",
           key: "key-tree-data-column",
@@ -332,7 +332,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/React.createElement(this.props.icons.DetailPanel, null)));
       } else {
         return /*#__PURE__*/React.createElement(_TableCell.default, {
-          className: this.props.classes.outlinedInput,
+          className: this.props.classes?.outlinedInput,
           padding: "none",
           key: "key-tree-data-column"
         });
@@ -407,7 +407,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
         return columnDef.tableData.groupOrder > -1;
       }).forEach(function (columnDef) {
         renderColumns.splice(0, 0, /*#__PURE__*/React.createElement(_TableCell.default, {
-          className: _this6.props.classes.outlinedInput,
+          className: _this6.props.classes?.outlinedInput,
           size: size,
           padding: "none",
           key: "key-group-cell" + columnDef.tableData.id
@@ -461,7 +461,7 @@ var MTableBodyRow = /*#__PURE__*/function (_React$Component) {
         }
       }), renderColumns), this.props.data.tableData && this.props.data.tableData.showDetailPanel && /*#__PURE__*/React.createElement(_TableRow.default // selected={this.props.index % 2 === 0}
       , null, /*#__PURE__*/React.createElement(_TableCell.default, {
-        className: this.props.classes.outlinedInput,
+        className: this.props.classes?.outlinedInput,
         size: size,
         colSpan: renderColumns.length,
         padding: "none"

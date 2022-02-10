@@ -181,7 +181,7 @@ var MTableFilterRow = /*#__PURE__*/function (_React$Component) {
       var FilterIcon = _this.props.icons.Filter;
       console.log(_this.props);
       return /*#__PURE__*/React.createElement(_TextField.default, {
-        className: _this.props.classes.outlinedInput,
+        className: _this.props.classes?.outlinedInput,
         style: columnDef.type === "numeric" ? {
           float: "right"
         } : {},
