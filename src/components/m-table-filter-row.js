@@ -123,7 +123,6 @@ class MTableFilterRow extends React.Component {
   renderDefaultFilter = (columnDef) => {
     const localization = this.getLocalizationData();
     const FilterIcon = this.props.icons.Filter;
-    console.log(this.props)
     return (
       <TextField
         className={this.props.classes.outlinedInput}
@@ -289,7 +288,7 @@ MTableFilterRow.defaultProps = {
   localization: {
     filterTooltip: "Filter",
   },
-  hideFilterIcons: false
+  hideFilterIcons: false,
 };
 
 MTableFilterRow.propTypes = {

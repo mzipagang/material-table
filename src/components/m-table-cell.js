@@ -178,7 +178,6 @@ export default class MTableCell extends React.Component {
 
     return (
       <TableCell
-        className={this.props.classes.outlinedInput}
         size={this.props.size}
         {...cellProps}
         style={this.getStyle()}
@@ -193,7 +192,6 @@ export default class MTableCell extends React.Component {
 }
 
 MTableCell.defaultProps = {
-  classes: {},
   columnDef: {},
   value: undefined,
 };

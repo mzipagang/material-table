@@ -193,7 +193,7 @@ class MTableBody extends React.Component {
     }
 
     return (
-      <TableBody>
+      <TableBody className={this.props.classes.tableBodyRoot}>
         {this.props.options.filtering && (
           <this.props.components.FilterRow
             classes={this.props.classes}

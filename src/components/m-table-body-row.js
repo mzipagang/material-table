@@ -30,7 +30,6 @@ export default class MTableBodyRow extends React.Component {
         ) {
           return (
             <this.props.components.EditCell
-              classes={this.props.classes}
               components={this.props.components}
               icons={this.props.icons}
               localization={this.props.localization}
@@ -44,7 +43,6 @@ export default class MTableBodyRow extends React.Component {
         } else {
           return (
             <this.props.components.Cell
-              classes={this.props.classes}
               size={size}
               errorState={this.props.errorState}
               icons={this.props.icons}
@@ -77,7 +75,6 @@ export default class MTableBodyRow extends React.Component {
     const width = actions.length * CommonValues.baseIconSize(this.props);
     return (
       <TableCell
-        className={this.props.classes.outlinedInput}
         size={size}
         padding="none"
         key="key-actions-column"
@@ -124,7 +121,6 @@ export default class MTableBodyRow extends React.Component {
 
     return (
       <TableCell
-        className={this.props.classes.outlinedInput}
         size={size}
         padding="none"
         key="key-selection-column"
@@ -161,7 +157,6 @@ export default class MTableBodyRow extends React.Component {
     if (typeof this.props.detailPanel == "function") {
       return (
         <TableCell
-          className={this.props.classes.outlinedInput}
           size={size}
           padding="none"
           key="key-detail-panel-column"
@@ -193,12 +188,7 @@ export default class MTableBodyRow extends React.Component {
       );
     } else {
       return (
-        <TableCell
-          className={this.props.classes.outlinedInput}
-          size={size}
-          padding="none"
-          key="key-detail-panel-column"
-        >
+        <TableCell size={size} padding="none" key="key-detail-panel-column">
           <div
             style={{
               width: 42 * this.props.detailPanel.length,
@@ -287,7 +277,6 @@ export default class MTableBodyRow extends React.Component {
     ) {
       return (
         <TableCell
-          className={this.props.classes.outlinedInput}
           size={size}
           padding="none"
           key={"key-tree-data-column"}
@@ -310,13 +299,7 @@ export default class MTableBodyRow extends React.Component {
         </TableCell>
       );
     } else {
-      return (
-        <TableCell
-          className={this.props.classes.outlinedInput}
-          padding="none"
-          key={"key-tree-data-column"}
-        />
-      );
+      return <TableCell padding="none" key={"key-tree-data-column"} />;
     }
   }
 
@@ -396,7 +379,6 @@ export default class MTableBodyRow extends React.Component {
           0,
           0,
           <TableCell
-            className={this.props.classes.outlinedInput}
             size={size}
             padding="none"
             key={"key-group-cell" + columnDef.tableData.id}
@@ -460,7 +442,6 @@ export default class MTableBodyRow extends React.Component {
             // selected={this.props.index % 2 === 0}
             >
               <TableCell
-                className={this.props.classes.outlinedInput}
                 size={size}
                 colSpan={renderColumns.length}
                 padding="none"
@@ -521,7 +502,6 @@ export default class MTableBodyRow extends React.Component {
 
 MTableBodyRow.defaultProps = {
   actions: [],
-  classes: {},
   index: 0,
   data: {},
   options: {},

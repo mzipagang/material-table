@@ -3,20 +3,22 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+  value: true,
 });
 var _exportNames = {
-  MTable: true
+  MTable: true,
 };
 Object.defineProperty(exports, "MTable", {
   enumerable: true,
   get: function get() {
     return _materialTable.default;
-  }
+  },
 });
 exports.default = void 0;
 
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _extends2 = _interopRequireDefault(
+  require("@babel/runtime/helpers/extends")
+);
 
 require("./utils/polyfill");
 
@@ -40,7 +42,7 @@ Object.keys(_components).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _components[key];
-    }
+    },
   });
 });
 _materialTable.default.defaultProps = _defaultProps.defaultProps;
@@ -49,59 +51,34 @@ _materialTable.default.propTypes = _propTypes.propTypes;
 var styles = function styles(theme) {
   return {
     paginationRoot: {
-      width: "100%"
+      width: "100%",
     },
     paginationToolbar: {
       padding: 0,
-      width: "100%"
+      width: "100%",
     },
     paginationCaption: {
-      display: "none"
+      display: "none",
     },
     paginationSelectRoot: {
-      margin: 0
+      margin: 0,
     },
-    outlinedInput: {
-      "& MuiTableCell-head": {
-        lineHeight: '.9rem',
-        backgroundClip: 'padding-box'
-      },
-      height: "26px",
-      minWidth: "30px",
-      padding: 0,
-      "& .MuiOutlinedInput-notchedOutline": {
-        border: "none",
-        borderBottom: "1px solid rgba(0, 0, 0, 0.42)",
-        borderRadius: 0
-      },
-      "& input": {
-        padding: "4px 0 5px",
-        minWidth: "50px"
-      },
-      "& .MuiIcon-root": {
-        fontSize: "0.75rem !important"
-      }
-    },
-    tablePagination: {
-      "& .MuiTablePagination-selectLabel": {
-        display: "none"
-      },
-      "& .MuiTablePagination-displayedRows": {
-        display: "none"
-      },
-      "& .MuiTablePagination-select": {
-        margin: "0px"
-      }
-    }
+    tableBodyRoot: {},
+    tableCellHead: {},
+    outlinedInput: {},
+    tablePagination: {},
   };
 };
 
 var _default = (0, _withStyles.default)(styles, {
-  withTheme: true
+  withTheme: true,
 })(function (props) {
-  return /*#__PURE__*/_react.default.createElement(_materialTable.default, (0, _extends2.default)({}, props, {
-    ref: props.tableRef
-  }));
+  return /*#__PURE__*/ _react.default.createElement(
+    _materialTable.default,
+    (0, _extends2.default)({}, props, {
+      ref: props.tableRef,
+    })
+  );
 });
 
 exports.default = _default;
