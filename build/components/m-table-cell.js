@@ -389,6 +389,7 @@ var MTableCell = /*#__PURE__*/ (function (_React$Component) {
           _TableCell.default,
           (0, _extends2.default)(
             {
+              className: this.props.classes.root,
               size: this.props.size,
             },
             cellProps,

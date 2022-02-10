@@ -240,6 +240,9 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
             return /*#__PURE__*/ React.createElement(
               _this.props.components.EditRow,
               {
+                classes: {
+                  root: _this.props.classes.root,
+                },
                 columns: _this.props.columns.filter(function (columnDef) {
                   return !columnDef.hidden;
                 }),
@@ -273,6 +276,9 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
             return /*#__PURE__*/ React.createElement(
               _this.props.components.Row,
               {
+                classes: {
+                  root: _this.props.classes.root,
+                },
                 components: _this.props.components,
                 icons: _this.props.icons,
                 data: data,
@@ -375,6 +381,9 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
           null,
           this.props.options.filtering &&
             /*#__PURE__*/ React.createElement(this.props.components.FilterRow, {
+              classes: {
+                root: this.props.classes.root,
+              },
               columns: this.props.columns.filter(function (columnDef) {
                 return !columnDef.hidden;
               }),
@@ -474,6 +483,7 @@ MTableBody.defaultProps = {
 };
 MTableBody.propTypes = {
   actions: _propTypes.default.array,
+  classes: _propTypes.default.object,
   components: _propTypes.default.object.isRequired,
   columns: _propTypes.default.array.isRequired,
   currentPage: _propTypes.default.number,

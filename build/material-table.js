@@ -840,6 +840,9 @@ var MaterialTable = /*#__PURE__*/ (function (_React$Component) {
             }),
           /*#__PURE__*/ React.createElement(props.components.Body, {
             actions: props.actions,
+            classes: {
+              root: props.classes.outlinedInput,
+            },
             components: props.components,
             icons: props.icons,
             renderData: _this.state.renderData,
@@ -1351,7 +1354,7 @@ var MaterialTable = /*#__PURE__*/ (function (_React$Component) {
                 null,
                 /*#__PURE__*/ React.createElement(props.components.Pagination, {
                   classes: {
-                    root: props.classes.paginationRoot,
+                    root: props.classes.tablePagination,
                     toolbar: props.classes.paginationToolbar,
                     caption: props.classes.paginationCaption,
                     selectRoot: props.classes.paginationSelectRoot,

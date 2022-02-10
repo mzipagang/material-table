@@ -233,6 +233,9 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
               return /*#__PURE__*/ React.createElement(
                 _this2.props.components.EditCell,
                 {
+                  classes: {
+                    root: _this2.props.classes.root,
+                  },
                   components: _this2.props.components,
                   icons: _this2.props.icons,
                   localization: _this2.props.localization,
@@ -247,6 +250,9 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
               return /*#__PURE__*/ React.createElement(
                 _this2.props.components.Cell,
                 {
+                  classes: {
+                    root: _this2.props.classes.root,
+                  },
                   size: size,
                   errorState: _this2.props.errorState,
                   icons: _this2.props.icons,
@@ -283,6 +289,7 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
         return /*#__PURE__*/ React.createElement(
           _TableCell.default,
           {
+            className: this.props.classes.root,
             size: size,
             padding: "none",
             key: "key-actions-column",
@@ -341,6 +348,7 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
         return /*#__PURE__*/ React.createElement(
           _TableCell.default,
           {
+            className: this.props.classes.root,
             size: size,
             padding: "none",
             key: "key-selection-column",
@@ -395,6 +403,7 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
           return /*#__PURE__*/ React.createElement(
             _TableCell.default,
             {
+              className: this.props.classes.root,
               size: size,
               padding: "none",
               key: "key-detail-panel-column",
@@ -437,6 +446,7 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
           return /*#__PURE__*/ React.createElement(
             _TableCell.default,
             {
+              className: this.props.classes.root,
               size: size,
               padding: "none",
               key: "key-detail-panel-column",
@@ -545,6 +555,7 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
           return /*#__PURE__*/ React.createElement(
             _TableCell.default,
             {
+              className: this.props.classes.root,
               size: size,
               padding: "none",
               key: "key-tree-data-column",
@@ -580,6 +591,7 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
           );
         } else {
           return /*#__PURE__*/ React.createElement(_TableCell.default, {
+            className: this.props.classes.root,
             padding: "none",
             key: "key-tree-data-column",
           });
@@ -674,6 +686,7 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
               0,
               0,
               /*#__PURE__*/ React.createElement(_TableCell.default, {
+                className: _this6.props.classes.root,
                 size: size,
                 padding: "none",
                 key: "key-group-cell" + columnDef.tableData.id,
@@ -750,6 +763,7 @@ var MTableBodyRow = /*#__PURE__*/ (function (_React$Component) {
               /*#__PURE__*/ React.createElement(
                 _TableCell.default,
                 {
+                  className: this.props.classes.root,
                   size: size,
                   colSpan: renderColumns.length,
                   padding: "none",

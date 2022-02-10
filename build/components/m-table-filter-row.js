@@ -340,6 +340,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
 
         var FilterIcon = _this.props.icons.Filter;
         return /*#__PURE__*/ React.createElement(_TextField.default, {
+          className: _this.props.classes.root,
           style:
             columnDef.type === "numeric"
               ? {
