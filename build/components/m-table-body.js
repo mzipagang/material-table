@@ -544,20 +544,6 @@ var styles = function styles() {
       },
     },
     outlinedInput: {
-      "& .MuiOutlinedInput-root": {
-        height: "26px",
-        minWidth: "30px",
-        padding: 0,
-      },
-      "& .MuiOutlinedInput-notchedOutline": {
-        border: "none",
-        borderBottom: "1px solid rgba(0, 0, 0, 0.42)",
-        borderRadius: 0,
-      },
-      "& input": {
-        padding: "4px 0 5px",
-        minWidth: "50px",
-      },
       "& .MuiIcon-root": {
         fontSize: "0.75rem !important",
       },
