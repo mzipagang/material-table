@@ -4,8 +4,6 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import PropTypes from "prop-types";
 import * as React from "react";
-
-import withStyles from "@mui/styles/withStyles";
 /* eslint-enable no-unused-vars */
 
 class MTableBody extends React.Component {
@@ -193,7 +191,7 @@ class MTableBody extends React.Component {
     }
 
     return (
-      <Body>
+      <TableBody>
         {this.props.options.filtering && (
           <this.props.components.FilterRow
             columns={this.props.columns.filter(
@@ -274,7 +272,7 @@ class MTableBody extends React.Component {
           />
         )}
         {this.renderEmpty(emptyRowCount, renderData)}
-      </Body>
+      </TableBody>
     );
   }
 }
@@ -329,23 +327,5 @@ MTableBody.propTypes = {
   bulkEditOpen: PropTypes.bool,
   onBulkEditRowChanged: PropTypes.func,
 };
-
-const styles = () => ({
-  root: {
-    "& tr:nth-of-type(even)": {
-      background: "#fafafa",
-    },
-    "& tr:hover": {
-      background: "#D3E2F8",
-    },
-    "& .MuiInput-root .MuiIcon-root": {
-      fontSize: "0.75rem !important",
-    },
-  },
-});
-
-const Body = withStyles(styles)(({ children, classes }) => {
-  return <TableBody className={classes.root}>{children}</TableBody>;
-});
 
 export default MTableBody;
