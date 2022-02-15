@@ -37,8 +37,6 @@ var _getPrototypeOf2 = _interopRequireDefault(
   require("@babel/runtime/helpers/getPrototypeOf")
 );
 
-var _withStyles = _interopRequireDefault(require("@mui/styles/withStyles"));
-
 var _TableBody = _interopRequireDefault(require("@mui/material/TableBody"));
 
 var _TableCell = _interopRequireDefault(require("@mui/material/TableCell"));
@@ -48,6 +46,8 @@ var _TableRow = _interopRequireDefault(require("@mui/material/TableRow"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var React = _interopRequireWildcard(require("react"));
+
+var _withStyles = _interopRequireDefault(require("@mui/styles/withStyles"));
 
 function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== "function") return null;
@@ -242,7 +242,6 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
             return /*#__PURE__*/ React.createElement(
               _this.props.components.EditRow,
               {
-                classes: _this.props.classes,
                 columns: _this.props.columns.filter(function (columnDef) {
                   return !columnDef.hidden;
                 }),
@@ -276,7 +275,6 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
             return /*#__PURE__*/ React.createElement(
               _this.props.components.Row,
               {
-                classes: _this.props.classes,
                 components: _this.props.components,
                 icons: _this.props.icons,
                 data: data,
@@ -375,13 +373,10 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
         }
 
         return /*#__PURE__*/ React.createElement(
-          _TableBody.default,
-          {
-            className: this.props.classes.tableBodyRoot,
-          },
+          Body,
+          null,
           this.props.options.filtering &&
             /*#__PURE__*/ React.createElement(this.props.components.FilterRow, {
-              classes: this.props.classes,
               columns: this.props.columns.filter(function (columnDef) {
                 return !columnDef.hidden;
               }),
@@ -469,7 +464,6 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
 
 MTableBody.defaultProps = {
   actions: [],
-  classes: {},
   currentPage: 0,
   pageSize: 5,
   renderData: [],
@@ -482,7 +476,6 @@ MTableBody.defaultProps = {
 };
 MTableBody.propTypes = {
   actions: _propTypes.default.array,
-  classes: _propTypes.default.object,
   components: _propTypes.default.object.isRequired,
   columns: _propTypes.default.array.isRequired,
   currentPage: _propTypes.default.number,
@@ -529,39 +522,30 @@ MTableBody.propTypes = {
 
 var styles = function styles() {
   return {
-    tableBodyRoot: {
+    root: {
       "& tr:nth-of-type(even)": {
         background: "#fafafa",
       },
       "& tr:hover": {
         background: "#D3E2F8",
       },
-    },
-    tableCellHead: {
-      "&. MuiTableCell-head": {
-        lineHeight: ".9rem",
-        backgroundClip: "padding-box",
-      },
-    },
-    outlinedInput: {
-      "& .MuiIcon-root": {
+      "& .MuiInput-root .MuiIcon-root": {
         fontSize: "0.75rem !important",
-      },
-    },
-    tablePagination: {
-      "& .MuiTablePagination-selectLabel": {
-        display: "none",
-      },
-      "& .MuiTablePagination-displayedRows": {
-        display: "none",
-      },
-      "& .MuiTablePagination-select": {
-        margin: "0px",
       },
     },
   };
 };
 
-var _default = (0, _withStyles.default)(styles)(MTableBody);
-
+var Body = (0, _withStyles.default)(styles)(function (_ref) {
+  var children = _ref.children,
+    classes = _ref.classes;
+  return /*#__PURE__*/ React.createElement(
+    _TableBody.default,
+    {
+      className: classes.root,
+    },
+    children
+  );
+});
+var _default = MTableBody;
 exports.default = _default;
