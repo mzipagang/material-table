@@ -47,8 +47,6 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var React = _interopRequireWildcard(require("react"));
 
-var _withStyles = _interopRequireDefault(require("@mui/styles/withStyles"));
-
 function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== "function") return null;
   var cacheBabelInterop = new WeakMap();
@@ -373,7 +371,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
         }
 
         return /*#__PURE__*/ React.createElement(
-          Body,
+          _TableBody.default,
           null,
           this.props.options.filtering &&
             /*#__PURE__*/ React.createElement(this.props.components.FilterRow, {
@@ -519,33 +517,5 @@ MTableBody.propTypes = {
   bulkEditOpen: _propTypes.default.bool,
   onBulkEditRowChanged: _propTypes.default.func,
 };
-
-var styles = function styles() {
-  return {
-    root: {
-      "& tr:nth-of-type(even)": {
-        background: "#fafafa",
-      },
-      "& tr:hover": {
-        background: "#D3E2F8",
-      },
-      "& .MuiInput-root .MuiIcon-root": {
-        fontSize: "0.75rem !important",
-      },
-    },
-  };
-};
-
-var Body = (0, _withStyles.default)(styles)(function (_ref) {
-  var children = _ref.children,
-    classes = _ref.classes;
-  return /*#__PURE__*/ React.createElement(
-    _TableBody.default,
-    {
-      className: classes.root,
-    },
-    children
-  );
-});
 var _default = MTableBody;
 exports.default = _default;
