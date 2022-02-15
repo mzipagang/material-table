@@ -474,16 +474,6 @@ var styles = function styles(theme) {
       position: "sticky",
       top: 0,
       zIndex: 10,
-      "&.MuiTableCell-sizeSmall": {
-        paddingTop: 4,
-        paddingBottom: 4,
-      },
-      "&.MuiTableSortLabel-root": {
-        fontSize: "14px",
-      },
-      "&.MuiTableSortLabel-icon": {
-        fontSize: "14px !important",
-      },
     },
   };
 };
