@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
-import withStyles from "@mui/styles/withStyles";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import PropTypes from "prop-types";
 import * as React from "react";
+
+import withStyles from "@mui/styles/withStyles";
 /* eslint-enable no-unused-vars */
 
 class MTableBody extends React.Component {
@@ -80,7 +81,6 @@ class MTableBody extends React.Component {
       if (data.tableData.editing || this.props.bulkEditOpen) {
         return (
           <this.props.components.EditRow
-            classes={this.props.classes}
             columns={this.props.columns.filter((columnDef) => {
               return !columnDef.hidden;
             })}
@@ -108,7 +108,6 @@ class MTableBody extends React.Component {
       } else {
         return (
           <this.props.components.Row
-            classes={this.props.classes}
             components={this.props.components}
             icons={this.props.icons}
             data={data}
@@ -194,10 +193,9 @@ class MTableBody extends React.Component {
     }
 
     return (
-      <TableBody className={this.props.classes.tableBodyRoot}>
+      <Body>
         {this.props.options.filtering && (
           <this.props.components.FilterRow
-            classes={this.props.classes}
             columns={this.props.columns.filter(
               (columnDef) => !columnDef.hidden
             )}
@@ -276,14 +274,13 @@ class MTableBody extends React.Component {
           />
         )}
         {this.renderEmpty(emptyRowCount, renderData)}
-      </TableBody>
+      </Body>
     );
   }
 }
 
 MTableBody.defaultProps = {
   actions: [],
-  classes: {},
   currentPage: 0,
   pageSize: 5,
   renderData: [],
@@ -297,7 +294,6 @@ MTableBody.defaultProps = {
 
 MTableBody.propTypes = {
   actions: PropTypes.array,
-  classes: PropTypes.object,
   components: PropTypes.object.isRequired,
   columns: PropTypes.array.isRequired,
   currentPage: PropTypes.number,
@@ -335,36 +331,21 @@ MTableBody.propTypes = {
 };
 
 const styles = () => ({
-  tableBodyRoot: {
+  root: {
     "& tr:nth-of-type(even)": {
       background: "#fafafa",
     },
     "& tr:hover": {
       background: "#D3E2F8",
     },
-  },
-  tableCellHead: {
-    "&. MuiTableCell-head": {
-      lineHeight: ".9rem",
-      backgroundClip: "padding-box",
-    },
-  },
-  outlinedInput: {
-    "& .MuiIcon-root": {
+    "& .MuiInput-root .MuiIcon-root": {
       fontSize: "0.75rem !important",
-    },
-  },
-  tablePagination: {
-    "& .MuiTablePagination-selectLabel": {
-      display: "none",
-    },
-    "& .MuiTablePagination-displayedRows": {
-      display: "none",
-    },
-    "& .MuiTablePagination-select": {
-      margin: "0px",
     },
   },
 });
 
-export default withStyles(styles)(MTableBody);
+const Body = withStyles(styles)(({ children, classes }) => {
+  return <TableBody className={classes.root}>{children}</TableBody>;
+});
+
+export default MTableBody;
