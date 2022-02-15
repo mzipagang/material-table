@@ -443,6 +443,7 @@ MTableHeader.defaultProps = {
   thirdSortClick: true,
 };
 MTableHeader.propTypes = {
+  classes: _propTypes.default.object,
   columns: _propTypes.default.array.isRequired,
   dataCount: _propTypes.default.number,
   hasDetailPanel: _propTypes.default.bool.isRequired,

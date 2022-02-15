@@ -262,6 +262,7 @@ MTableHeader.defaultProps = {
 };
 
 MTableHeader.propTypes = {
+  classes: PropTypes.object,
   columns: PropTypes.array.isRequired,
   dataCount: PropTypes.number,
   hasDetailPanel: PropTypes.bool.isRequired,

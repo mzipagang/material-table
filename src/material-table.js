@@ -50,7 +50,6 @@ export default class MaterialTable extends React.Component {
       showAddRow: false,
       bulkEditOpen: false,
       width: 0,
-      classes: {},
     };
 
     this.tableContainerDiv = React.createRef();

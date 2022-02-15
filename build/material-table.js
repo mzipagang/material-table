@@ -965,7 +965,6 @@ var MaterialTable = /*#__PURE__*/ (function (_React$Component) {
         showAddRow: false,
         bulkEditOpen: false,
         width: 0,
-        classes: {},
       }
     );
     _this.tableContainerDiv = React.createRef();

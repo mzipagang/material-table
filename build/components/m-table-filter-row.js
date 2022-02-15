@@ -570,7 +570,6 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
 })(React.Component);
 
 MTableFilterRow.defaultProps = {
-  classes: {},
   columns: [],
   selection: false,
   hasActions: false,

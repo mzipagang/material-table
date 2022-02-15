@@ -281,7 +281,6 @@ class MTableFilterRow extends React.Component {
 }
 
 MTableFilterRow.defaultProps = {
-  classes: {},
   columns: [],
   selection: false,
   hasActions: false,
