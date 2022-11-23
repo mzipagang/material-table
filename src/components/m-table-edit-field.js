@@ -1,4 +1,5 @@
 import * as React from "react";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import Select from "@mui/material/Select";
@@ -7,7 +8,6 @@ import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import DateFnsUtils from "@date-io/date-fns";
 import {
   LocalizationProvider,
   TimePicker,
@@ -85,13 +85,14 @@ class MTableEditField extends React.Component {
 
   renderDateField() {
     return (
-      <LocalizationProvider utils={DateFnsUtils} locale={this.props.locale}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker
           {...this.getProps()}
           format="dd.MM.yyyy"
           value={this.props.value || null}
           onChange={this.props.onChange}
           clearable
+          renderInput={(props) => <TextField {...props} />}
           InputProps={{
             style: {
               fontSize: 13,
@@ -106,13 +107,14 @@ class MTableEditField extends React.Component {
   }
   renderTimeField() {
     return (
-      <LocalizationProvider utils={DateFnsUtils} locale={this.props.locale}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
         <TimePicker
           {...this.getProps()}
           format="HH:mm:ss"
           value={this.props.value || null}
           onChange={this.props.onChange}
           clearable
+          renderInput={(props) => <TextField {...props} />}
           InputProps={{
             style: {
               fontSize: 13,
@@ -128,13 +130,14 @@ class MTableEditField extends React.Component {
 
   renderDateTimeField() {
     return (
-      <LocalizationProvider utils={DateFnsUtils} locale={this.props.locale}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateTimePicker
           {...this.getProps()}
           format="dd.MM.yyyy HH:mm:ss"
           value={this.props.value || null}
           onChange={this.props.onChange}
           clearable
+          renderInput={(props) => <TextField {...props} />}
           InputProps={{
             style: {
               fontSize: 13,

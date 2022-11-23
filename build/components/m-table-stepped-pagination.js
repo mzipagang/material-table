@@ -234,7 +234,6 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
       key: "render",
       value: function render() {
         var _this$props = this.props,
-          classes = _this$props.classes,
           count = _this$props.count,
           page = _this$props.page,
           rowsPerPage = _this$props.rowsPerPage,
@@ -250,9 +249,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
         var pageEnd = Math.min(maxPages, page + 1);
         return /*#__PURE__*/ React.createElement(
           "div",
-          {
-            className: classes.root,
-          },
+          null,
           showFirstLastPageButtons &&
             /*#__PURE__*/ React.createElement(
               _Tooltip.default,
@@ -386,7 +383,6 @@ MTablePaginationInner.propTypes = {
   page: _propTypes.default.number,
   count: _propTypes.default.number,
   rowsPerPage: _propTypes.default.number,
-  classes: _propTypes.default.object,
   localization: _propTypes.default.object,
   theme: _propTypes.default.any,
   showFirstLastPageButtons: _propTypes.default.bool,

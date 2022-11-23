@@ -244,6 +244,7 @@ export class MTableHeader extends React.Component {
 }
 
 MTableHeader.defaultProps = {
+  classes: {},
   dataCount: 0,
   hasSelection: false,
   headerStyle: {},
@@ -261,6 +262,7 @@ MTableHeader.defaultProps = {
 };
 
 MTableHeader.propTypes = {
+  classes: PropTypes.object,
   columns: PropTypes.array.isRequired,
   dataCount: PropTypes.number,
   hasDetailPanel: PropTypes.bool.isRequired,
@@ -284,10 +286,12 @@ MTableHeader.propTypes = {
 
 export const styles = (theme) => ({
   header: {
+    backgroundClip: "padding-box",
+    backgroundColor: theme.palette.background.paper, // Change according to theme,
+    lineHeight: ".9rem",
     position: "sticky",
     top: 0,
     zIndex: 10,
-    backgroundColor: theme.palette.background.paper, // Change according to theme,
   },
 });
 

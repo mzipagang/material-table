@@ -29,7 +29,6 @@ class MTablePaginationInner extends React.Component {
 
   render() {
     const {
-      classes,
       count,
       page,
       rowsPerPage,
@@ -42,7 +41,7 @@ class MTablePaginationInner extends React.Component {
     };
 
     return (
-      <div className={classes.root}>
+      <div>
         {showFirstLastPageButtons && (
           <Tooltip title={localization.firstTooltip}>
             <span>
@@ -155,7 +154,6 @@ MTablePaginationInner.propTypes = {
   page: PropTypes.number,
   count: PropTypes.number,
   rowsPerPage: PropTypes.number,
-  classes: PropTypes.object,
   localization: PropTypes.object,
   theme: PropTypes.any,
   showFirstLastPageButtons: PropTypes.bool,

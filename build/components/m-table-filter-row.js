@@ -49,6 +49,10 @@ var React = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+var _AdapterDateFns = _interopRequireDefault(
+  require("@mui/lab/AdapterDateFns")
+);
+
 var _TableCell = _interopRequireDefault(require("@mui/material/TableCell"));
 
 var _TableRow = _interopRequireDefault(require("@mui/material/TableRow"));
@@ -75,13 +79,9 @@ var _InputAdornment = _interopRequireDefault(
   require("@mui/material/InputAdornment")
 );
 
-var _Icon = _interopRequireDefault(require("@mui/material/Icon"));
-
 var _Tooltip = _interopRequireDefault(require("@mui/material/Tooltip"));
 
-var _dateFns = _interopRequireDefault(require("@date-io/date-fns"));
-
-var _pickers = require("@mui/lab");
+var _lab = require("@mui/lab");
 
 function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== "function") return null;
@@ -340,6 +340,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
 
         var FilterIcon = _this.props.icons.Filter;
         return /*#__PURE__*/ React.createElement(_TextField.default, {
+          variant: "standard",
           style:
             columnDef.type === "numeric"
               ? {
@@ -392,31 +393,33 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
           onChange: onDateInputChange,
           placeholder: _this.getLocalizedFilterPlaceHolder(columnDef),
           clearable: true,
+          renderInput: function renderInput(props) {
+            return /*#__PURE__*/ React.createElement(_TextField.default, props);
+          },
         };
         var dateInputElement = null;
 
         if (columnDef.type === "date") {
           dateInputElement = /*#__PURE__*/ React.createElement(
-            _pickers.DatePicker,
+            _lab.DatePicker,
             pickerProps
           );
         } else if (columnDef.type === "datetime") {
           dateInputElement = /*#__PURE__*/ React.createElement(
-            _pickers.DateTimePicker,
+            _lab.DateTimePicker,
             pickerProps
           );
         } else if (columnDef.type === "time") {
           dateInputElement = /*#__PURE__*/ React.createElement(
-            _pickers.TimePicker,
+            _lab.TimePicker,
             pickerProps
           );
         }
 
         return /*#__PURE__*/ React.createElement(
-          _pickers.MuiPickersUtilsProvider,
+          _lab.LocalizationProvider,
           {
-            utils: _dateFns.default,
-            locale: _this.props.localization.dateTimePickerLocalization,
+            dateAdapter: _AdapterDateFns.default,
           },
           dateInputElement
         );

@@ -371,6 +371,7 @@ export class MTableToolbar extends React.Component {
 
 MTableToolbar.defaultProps = {
   actions: [],
+  classes: {},
   columns: [],
   columnsButton: false,
   localization: {

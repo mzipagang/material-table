@@ -426,6 +426,7 @@ var MTableHeader = /*#__PURE__*/ (function (_React$Component) {
 
 exports.MTableHeader = MTableHeader;
 MTableHeader.defaultProps = {
+  classes: {},
   dataCount: 0,
   hasSelection: false,
   headerStyle: {},
@@ -442,6 +443,7 @@ MTableHeader.defaultProps = {
   thirdSortClick: true,
 };
 MTableHeader.propTypes = {
+  classes: _propTypes.default.object,
   columns: _propTypes.default.array.isRequired,
   dataCount: _propTypes.default.number,
   hasDetailPanel: _propTypes.default.bool.isRequired,
@@ -466,10 +468,13 @@ MTableHeader.propTypes = {
 var styles = function styles(theme) {
   return {
     header: {
+      backgroundClip: "padding-box",
+      backgroundColor: theme.palette.background.paper,
+      // Change according to theme,
+      lineHeight: ".9rem",
       position: "sticky",
       top: 0,
       zIndex: 10,
-      backgroundColor: theme.palette.background.paper, // Change according to theme,
     },
   };
 };

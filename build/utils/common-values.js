@@ -1,7 +1,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true,
+  value: true
 });
 exports.selectionMaxWidth = exports.rowActions = exports.elementSize = exports.baseIconSize = exports.actionsColumnWidth = void 0;
 

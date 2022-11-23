@@ -687,6 +687,7 @@ var MTableToolbar = /*#__PURE__*/ (function (_React$Component) {
 exports.MTableToolbar = MTableToolbar;
 MTableToolbar.defaultProps = {
   actions: [],
+  classes: {},
   columns: [],
   columnsButton: false,
   localization: {
